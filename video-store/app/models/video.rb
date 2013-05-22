@@ -1,3 +1,3 @@
 class Video < ActiveRecord::Base
-  attr_accessible :description, :name, :title, :yt_id
+  attr_accessible :category, :description, :title, :youtube
 end
