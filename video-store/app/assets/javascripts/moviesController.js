@@ -2,11 +2,36 @@ $(document).ready(function () {
 
     initialize();
 
+    $('#addMovie').click(createMovie);
+    $('#deleteAll').click(clearMovies);
+
     function initialize(){
-        getMovies();
+        getMovies(showMovies);
     }
 
-    function postMovie(id, name, description, category, yt_id){
+    function clearMovies(){
+        getMovies(deleteAll);
+    }
+
+    function createMovie(){
+        postMovie('test', 'test', 'test', 'test');
+    }
+
+    function deleteAll(movies){
+        for (var i=0; i<movies.length ; i++) {
+            $.ajax({
+              url: 'http://ignacio.apidone.com/movies/' + movies[i].id,
+              type: 'DELETE',
+              dataType: 'json',
+              data: { },
+              success: function(data, textStatus, xhr) {
+                console('Deleted movie with id: ' + movies[i].id);
+              }
+            });
+        }
+    }
+
+    function postMovie( name, description, category, yt_id){
         $.ajax({
           url: 'http://ignacio.apidone.com/movies',
           type: 'POST',
@@ -18,7 +43,7 @@ $(document).ready(function () {
         });
     }
 
-    function getMovies(category){
+    function getMovies(callback, category){
 
         var urlString = 'http://ignacio.apidone.com/movies';
 
@@ -29,7 +54,7 @@ $(document).ready(function () {
         $.ajax({
           url: urlString,
           success: function(data, textStatus, xhr) {
-            showMovies(data);
+            callback(data);
           }
         });
     }
