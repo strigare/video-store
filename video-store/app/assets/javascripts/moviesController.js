@@ -14,7 +14,7 @@ $(document).ready(function () {
     }
 
     function createMovie(){
-        postMovie('test', 'test', 'test', 'test');
+        postMovie('test', 'test', 'test', 'KrVC5dm5fFc');
     }
 
     function deleteAll(movies){
@@ -25,7 +25,7 @@ $(document).ready(function () {
               dataType: 'json',
               data: { },
               success: function(data, textStatus, xhr) {
-                console('Deleted movie with id: ' + movies[i].id);
+                console.log('Deleted movie');
               }
             });
         }
@@ -65,11 +65,14 @@ $(document).ready(function () {
         for (var i=0; i<movies.length ; i++) {
             moviesHTML += '<li class="span4">'+
                 '<div class="thumbnail">'+
-                  '<img src="http://placehold.it/320x200" alt="ALT NAME">'+
+                  '<img src="http://img.youtube.com/vi/' + movies[i].yt_id + '/0.jpg" alt="' + movies[i].name + '">'+
                   '<div class="caption">'+
-                    '<h3>Header Name</h3>'+
-                    '<p>Description</p>'+
-                    '<p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Open</a></p>'+
+                    '<h3>' + movies[i].name + '</h3>'+
+                    '<p>' + movies[i].description + '</p>'+
+                    '<div align="right">' + 
+                        '<a href="http://bootsnipp.com/" class="btn">Edit</a> \n'+
+                        '<a href="http://bootsnipp.com/" class="btn btn-danger">Delete</a>'+
+                    '</div>' +
                   '</div>'+
                 '</div>'+
               '</li>';
