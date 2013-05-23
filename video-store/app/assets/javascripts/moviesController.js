@@ -13,7 +13,7 @@ $(document).ready(function () {
       var yt_id = $('#inputYoutubeId').val();
       var id = $('#inputId').val();
       
-      $('#addVideoModal').modal('hide')
+      $('#addVideoModal').modal('hide');
       cleanModalForm();
 
       postMovie(name, description, category, yt_id, id );
@@ -26,6 +26,10 @@ $(document).ready(function () {
       } else{
         getMovies(showMovies);
       } 
+    });
+
+    $('#playVideoModal .stopPlaying').click(function(){
+      stopMovie();
     });
 
     function initialize(){
@@ -122,6 +126,19 @@ $(document).ready(function () {
       $('#inputYoutubeId').val(movie.yt_id);
     }
 
+    function playMovie(yt_id){
+      $('#playVideoModal').modal('show');
+
+      var videoWidth = $('#playVideoModal').width() - 30;
+      var html = '<iframe width="' + videoWidth + '" height="315" src="http://www.youtube.com/embed/' + yt_id + '"' +
+                    'frameborder="0" allowfullscreen></iframe>';
+      $('#playVideoModal .modal-body').html(html);
+    }
+
+    function stopMovie(){
+      $('#playVideoModal .modal-body').html('');
+    }
+
     function showMovies(movies){
         var moviesHTML = '<ul class="thumbnails">';
 
@@ -133,6 +150,7 @@ $(document).ready(function () {
                     '<h3>' + movies[i].name + '</h3>'+
                     '<p>' + movies[i].description + '</p>'+
                     '<div align="right">' + 
+                        '<a href="#" movie_yt_id="' + movies[i].yt_id + '" class="btn playMovie">Play</a> \n'+
                         '<a href="#" movie_id="' + movies[i].id + '" class="btn editMovie">Edit</a> \n'+
                         '<a href="#" movie_id="' + movies[i].id + '" class="btn btn-danger deleteMovie">Delete</a>'+
                     '</div>' +
@@ -151,6 +169,10 @@ $(document).ready(function () {
 
         $('.editMovie').click(function(){
           editMovie($(this).attr('movie_id'));
+        });
+
+        $('.playMovie').click(function(){
+          playMovie($(this).attr('movie_yt_id'));
         });
     }
 });
