@@ -3,6 +3,8 @@ $(document).ready(function () {
   var elementName = 'tests4';
     initialize();
 
+    $('#about').removeClass('active');
+    $('#home').addClass('active');
     $('#deleteAll').click(clearMovies);
 
     $( '#addMovieForm' ).on( 'submit', function( event ) {

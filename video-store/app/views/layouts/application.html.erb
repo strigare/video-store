@@ -30,9 +30,8 @@
           <a class="brand" href="#">Video store</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Profile</a></li>
+              <li id="home" ><%= link_to "Home", videos_path %></li>
+              <li id="about" class="active"><%= link_to "About", root_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
