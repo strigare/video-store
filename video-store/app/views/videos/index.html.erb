@@ -1,20 +1,81 @@
 <%= javascript_include_tag "moviesController" %>
 
+<div class ="row">
+  <div class="span12">
+    <div class="btn-toolbar pull-left">
+      <div class="btn-group ">
+        <button href="#addVideoModal" class="btn" data-toggle="modal">Add Video</button>
+        <button href="#" id="deleteAll" class="btn" >Delete</button>
+      </div>
+    </div>
 
-  <div class="btn-group ">
-    <button id="addMovie" class="btn">Add</button>
-    <button id="deleteAll" class="btn">Delete</button>
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <button  class="btn  dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a class="categorySelector" href="#">All</a></li>
+          <li><a class="categorySelector" href="#">Dubstep</a></li>
+          <li><a class="categorySelector" href="#">Classical</a></li>
+          <li><a class="categorySelector" href="#">Rock</a></li>
+          <li><a class="categorySelector" href="#">Other</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="btn-group">
-    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Separated link</a></li>
-    </ul>
-  </div><!-- /btn-group -->
-<div  id="movies">
+</div>
+ 
+<!-- Modal -->
+<div id="addVideoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add video</h3>
+  </div>
+  <div class="modal-body">
+    <form id="addMovieForm" class="form-horizontal">
+      <input type="text" id="inputId" class="hide" >
+      <div class="control-group">
+        <label class="control-label" for="inputName">Name</label>
+        <div class="controls">
+          <input type="text" id="inputName" placeholder="Name" required>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputDescription">Description</label>
+        <div class="controls">
+          <textarea id="inputDescription" placeholder="Description" required></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputCategory">Category</label>
+        <div class="controls">
+          <select id="inputCategory">
+                <option>Dubstep</option>
+                <option>Classic</option>
+                <option>Rock</option>
+                <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputYoutubeId">Youtube ID</label>
+        <div class="controls">
+          <input type="text" id="inputYoutubeId" placeholder="Youtube ID" required>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button type="submit"  id="addVideo" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
+<div class ="row">
+  <div class="span12">
+    <div  id="movies">
+      <%= image_tag "ajax-loader.gif" %>
+    </div>
+  </div>
 </div>
