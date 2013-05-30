@@ -117,7 +117,7 @@ $(document).ready(function () {
     }
 
     function editMovie(id){
-      $('#addVideoModal').modal('show')
+      $('#addVideoModal').modal('show');
       getMovie(id, fillmodalForm);
     }
 
