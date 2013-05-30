@@ -136,21 +136,16 @@ $(document).ready(function () {
       $('#thumbnailUrl').val(movie.thumbnailUrl);
     }
 
-    function playMovie(yt_id){
+    function playMovie(movie_url){
 
       $('#playVideoModal').modal('show');
       $('#playVideoModal').on('shown', function() {
-        bodyLoaded();
+        videoPlayer.initialize(movie_url);
       });
-
-      /*var videoWidth = $('#playVideoModal').width() - 30;
-      var html = '<iframe width="' + videoWidth + '" height="315" src="http://www.youtube.com/embed/' + yt_id + '"' +
-                    'frameborder="0" allowfullscreen></iframe>';
-      $('#playVideoModal .modal-body').html(html);*/
     }
 
     function stopMovie(){
-      $('#playVideoModal .modal-body').html('');
+      videoPlayer.pauseVideo();
     }
 
     function showMovies(movies){
@@ -159,12 +154,12 @@ $(document).ready(function () {
         for (var i=0; i<movies.length ; i++) {
             moviesHTML += '<li class="span4">'+
                 '<div class="thumbnail">'+
-                  '<img src="http://img.youtube.com/vi/' + movies[i].yt_id + '/0.jpg" alt="' + movies[i].name + '">'+
+                  '<img src="assets/poster.jpg" alt="' + movies[i].name + '">'+
                   '<div class="caption">'+
                     '<h3>' + movies[i].name + '</h3>'+
                     '<p>' + movies[i].description + '</p>'+
                     '<div align="right">' + 
-                        '<a href="#" movie_yt_id="' + movies[i].yt_id + '" class="btn playMovie">Play</a> \n'+
+                        '<a href="#" movie_url_id="' + movies[i].videoUrl + '" class="btn playMovie">Play</a> \n'+
                         '<a href="#" movie_id="' + movies[i].id + '" class="btn editMovie">Edit</a> \n'+
                         '<a href="#" movie_id="' + movies[i].id + '" class="btn btn-danger deleteMovie">Delete</a>'+
                     '</div>' +
@@ -186,7 +181,7 @@ $(document).ready(function () {
         });
 
         $('.playMovie').click(function(){
-          playMovie($(this).attr('movie_yt_id'));
+          playMovie($(this).attr('movie_url_id'));
         });
     }
 });
