@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
   var elementName = 'tests4';
     initialize();
 
@@ -12,13 +13,15 @@ $(document).ready(function () {
       var name = $('#inputName').val();
       var description = $('#inputDescription').val();
       var category = $('#inputCategory').val();
-      var yt_id = $('#inputYoutubeId').val();
+      var videoUrl = $('#videoUrl').val();
+      var thumbnailUrl = $('#thumbnailUrl').val();
+      var author = $('#author').val();
       var id = $('#inputId').val();
       
       $('#addVideoModal').modal('hide');
       cleanModalForm();
 
-      postMovie(name, description, category, yt_id, id );
+      postMovie(name, description, category, author, videoUrl, thumbnailUrl, id );
     });
 
     $('.categorySelector').click(function(){
@@ -42,7 +45,9 @@ $(document).ready(function () {
       $('#inputId').val('');
       $('#inputName').val('');
       $('#inputDescription').val('');
-      $('#inputYoutubeId').val('');
+      $('#videoUrl').val('');
+      $('#thumbnailUrl').val('');
+      $('#author').val('');
     }
 
     function clearMovies(){
@@ -67,9 +72,10 @@ $(document).ready(function () {
       });
     }
 
-    function postMovie( name, description, category, yt_id, id){
+    function postMovie( name, description, category, author, videoUrl, thumbnailUrl, id){
 
-      var parameters = { "name": name, "category": category, "description": description, "yt_id": yt_id};
+      var parameters = { 'name': name, 'category': category, 'description': description, 'author': author,
+                    'videoUrl': videoUrl, 'thumbnailUrl': thumbnailUrl};
       var type = 'POST';
       var url = 'http://ignacio.apidone.com/' + elementName + ''
 
@@ -125,16 +131,22 @@ $(document).ready(function () {
       $('#inputId').val(movie.id);
       $('#inputName').val(movie.name);
       $('#inputDescription').val(movie.description);
-      $('#inputYoutubeId').val(movie.yt_id);
+      $('#author').val(movie.author);
+      $('#videoUrl').val(movie.videoUrl);
+      $('#thumbnailUrl').val(movie.thumbnailUrl);
     }
 
     function playMovie(yt_id){
-      $('#playVideoModal').modal('show');
 
-      var videoWidth = $('#playVideoModal').width() - 30;
+      $('#playVideoModal').modal('show');
+      $('#playVideoModal').on('shown', function() {
+        bodyLoaded();
+      });
+
+      /*var videoWidth = $('#playVideoModal').width() - 30;
       var html = '<iframe width="' + videoWidth + '" height="315" src="http://www.youtube.com/embed/' + yt_id + '"' +
                     'frameborder="0" allowfullscreen></iframe>';
-      $('#playVideoModal .modal-body').html(html);
+      $('#playVideoModal .modal-body').html(html);*/
     }
 
     function stopMovie(){

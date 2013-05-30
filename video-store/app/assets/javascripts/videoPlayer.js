@@ -30,6 +30,7 @@ var bodyLoaded = function(){
   fullScreenControl = document.getElementById("full_screen");
 
   showController();
+  video.style.width = $('#video_box').width() + 'px';
   positionController();
 
   playControl.addEventListener("click", function(){
@@ -80,6 +81,7 @@ function pauseVideo(){
 }
 
 function positionController(){
+
   controls.style.top = (video.offsetHeight - controls.offsetHeight) + "px";
   controls.style.left = "0px";
   controls.style.width = video.offsetWidth + "px";

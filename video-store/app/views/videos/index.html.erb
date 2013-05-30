@@ -1,4 +1,6 @@
+<%= javascript_include_tag "videoPlayer" %>
 <%= javascript_include_tag "moviesController" %>
+<%= stylesheet_link_tag "videoPlayer" %>
 
 <div class ="row">
   <div class="span12">
@@ -57,9 +59,21 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="inputYoutubeId">Youtube ID</label>
+        <label class="control-label" for="author">Author</label>
         <div class="controls">
-          <input type="text" id="inputYoutubeId" placeholder="Youtube ID" required>
+          <input type="text" id="author" placeholder="Author" required>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="videoUrl">Video URL</label>
+        <div class="controls">
+          <input type="text" id="videoUrl" placeholder="Video URL" required>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="thumbnailUrl">Thumbnail URL</label>
+        <div class="controls">
+          <input type="text" id="thumbnailUrl" placeholder="Thumbnail URL" required>
         </div>
       </div>
       <div class="control-group">
@@ -79,7 +93,48 @@
     <h3 id="myModalLabel">Add video</h3>
   </div>
   <div class="modal-body">
-    
+    <div id="video_box">
+    <video id="video" width="640" height="360" poster="assets/poster.jpg" autobuffer>
+      <source src="http://zencoder-demo.s3.amazonaws.com/trailer_test.ogg" type="video/ogg"></source>
+      <param name="src" value="http://zencoder-demo.s3.amazonaws.com/trailer_test.mp4" />
+      <param name="showlogo" value="false" />
+      <param name="autoplay" value="false" />
+    </video>
+    <div id="controls">
+      <div id="play" class="play control">
+        <span></span>
+      </div>
+      <div id="progress" class="control">
+        <div id="progress_box">
+          <span id="load_progress"><span id="play_progress"></span></span>
+        </div>
+        <div id="play_time">
+          <span id="current_time_display">00:00</span> / <span id="duration_display">00:00</span>
+        </div>
+      </div>
+      <div id="volume" class="control">
+        <span>
+          <ul id="volume_display">
+            <li></li><li></li><li></li><li></li><li></li><li></li>
+          </ul>
+        </span>
+      </div>
+      <div id="full_screen" class="control">
+        <span>
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><div id="fs_top_left" class="fs-corner"></div></td>
+              <td><div id="fs_top_right" class="fs-corner"></div></td>
+            </tr>
+            <tr>
+              <td><div id="fs_bottom_left" class="fs-corner"></div></td>
+              <td><div id="fs_bottom_right" class="fs-corner"></div></td>
+            </tr>
+          </table>
+        </span>
+      </div>
+    </div>
+  </div>
   </div>
   <div class="modal-footer">
     <button class="btn stopPlaying" data-dismiss="modal" aria-hidden="true">Close</button>
