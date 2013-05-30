@@ -85,7 +85,6 @@ var videoPlayer = (function(){
     showController: function(){
       me.controls.css('display', 'block');
     },
-    
     sizeProgressBar: function(){
       me.progressControl.width( me.controls[0].offsetWidth - 125);
       me.progressHolder.width(me.progressControl[0].offsetWidth - 80);
